@@ -99,6 +99,7 @@
 		897AD53C25E52F880096AA9E /* PokeApp */ = {
 			isa = PBXGroup;
 			children = (
+				897AD57025E540360096AA9E /* Utils */,
 				897AD53D25E52F880096AA9E /* AppDelegate.swift */,
 				897AD53F25E52F880096AA9E /* SceneDelegate.swift */,
 				897AD54125E52F880096AA9E /* ViewController.swift */,
@@ -126,6 +127,13 @@
 				897AD56125E52F8B0096AA9E /* Info.plist */,
 			);
 			path = PokeAppUITests;
+			sourceTree = "<group>";
+		};
+		897AD57025E540360096AA9E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,7 +454,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.luistejada.PokeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -465,7 +473,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.luistejada.PokeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
