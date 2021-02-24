@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return true
         } else {
             window = UIWindow(frame: UIScreen.main.bounds)
-            window?.rootViewController = LoginWireFrame.createModule()
+            window?.rootViewController = HomeWireFrame.createModule()
             window?.makeKeyAndVisible()
         }
         return true

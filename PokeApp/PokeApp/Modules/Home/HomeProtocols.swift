@@ -12,6 +12,8 @@ import UIKit
 protocol HomeViewProtocol: class {
     // PRESENTER -> VIEW
     var presenter: HomePresenterProtocol? { get set }
+    func displayError(_ error: Error)
+    func reloadData()
 }
 
 protocol HomeWireFrameProtocol: class {
@@ -26,16 +28,23 @@ protocol HomePresenterProtocol: class {
     var wireFrame: HomeWireFrameProtocol? { get set }
     
     func viewDidLoad()
+    func getRegionCount() -> Int
+    func getRegion(at index: Int) -> Region?
 }
 
 protocol HomeInteractorOutputProtocol: class {
 // INTERACTOR -> PRESENTER
+    
+    func didLoad(regions: [Region])
+    func didLoad(error: Error)
 }
 
 protocol HomeInteractorInputProtocol: class {
     // PRESENTER -> INTERACTOR
     var presenter: HomeInteractorOutputProtocol? { get set }
     var remoteDatamanager: HomeRemoteDataManagerInputProtocol? { get set }
+    
+    func requestRegions()
 }
 
 protocol HomeDataManagerInputProtocol: class {
@@ -44,9 +53,12 @@ protocol HomeDataManagerInputProtocol: class {
 
 protocol HomeRemoteDataManagerInputProtocol: class {
     // INTERACTOR -> REMOTEDATAMANAGER
+    var service: RegionServiceProtocol {get set}
     var remoteRequestHandler: HomeRemoteDataManagerOutputProtocol? { get set }
+    func getRegions()
 }
 
 protocol HomeRemoteDataManagerOutputProtocol: class {
     // REMOTEDATAMANAGER -> INTERACTOR
+    func didReceived(_ result: Result<[Region], Error>)
 }

@@ -12,12 +12,13 @@ import UIKit
 class HomeWireFrame: HomeWireFrameProtocol {
     
     class func createModule() -> UIViewController {
-        let view = LoginView()
-        let interactor: LoginInteractorInputProtocol = LoginInteractor()
-        let wireFrame: LoginWireFrameProtocol = LoginWireFrame()
-        let presenter: LoginPresenterProtocol & LoginInteractorOutputProtocol = LoginPresenter(view: view, interactor: interactor, wireFrame: wireFrame)
+        let view = HomeView()
+        let interactor = HomeInteractor(remoteDatamanager: HomeRemoteDataManager())
+        let wireFrame = HomeWireFrame()
+        let presenter = HomePresenter(view: view, interactor: interactor, wireFrame: wireFrame)
         view.presenter = presenter
         interactor.presenter = presenter
+        interactor.remoteDatamanager?.remoteRequestHandler = interactor
         return view
     }
 }

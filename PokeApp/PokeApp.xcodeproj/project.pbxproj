@@ -22,7 +22,6 @@
 		89A35CA925E5D3D5008010C3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CA225E5D3D5008010C3 /* LoginView.swift */; };
 		89A35CAA25E5D3D5008010C3 /* LoginRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CA325E5D3D5008010C3 /* LoginRemoteDataManager.swift */; };
 		89A35CAB25E5D3D5008010C3 /* LoginWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CA425E5D3D5008010C3 /* LoginWireFrame.swift */; };
-		89A35CC125E5D9AF008010C3 /* ServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CC025E5D9AF008010C3 /* ServiceProtocol.swift */; };
 		89A35CC625E5DA4B008010C3 /* RegionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CC525E5DA4B008010C3 /* RegionServiceProtocol.swift */; };
 		89A35CCD25E5DF2F008010C3 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CCC25E5DF2F008010C3 /* Builder.swift */; };
 		89A35CD525E5DF58008010C3 /* ButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CD425E5DF58008010C3 /* ButtonBuilder.swift */; };
@@ -40,6 +39,8 @@
 		89A35D4725E60B68008010C3 /* HomeRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35D4025E60B68008010C3 /* HomeRemoteDataManager.swift */; };
 		89A35D4825E60B68008010C3 /* HomeWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35D4125E60B68008010C3 /* HomeWireFrame.swift */; };
 		89A35D5725E60EA8008010C3 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35D5625E60EA8008010C3 /* Region.swift */; };
+		89A35D6325E6755D008010C3 /* RegionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35D6225E6755D008010C3 /* RegionService.swift */; };
+		89C8F0D025E6946500A5B193 /* CommonControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C8F0CF25E6946500A5B193 /* CommonControls.swift */; };
 		9986F17C9B79D4FF71054180 /* Pods_PokeApp_PokeAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D15A7FD9E9EC9A443D88A77 /* Pods_PokeApp_PokeAppUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +86,6 @@
 		89A35CA225E5D3D5008010C3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		89A35CA325E5D3D5008010C3 /* LoginRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemoteDataManager.swift; sourceTree = "<group>"; };
 		89A35CA425E5D3D5008010C3 /* LoginWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWireFrame.swift; sourceTree = "<group>"; };
-		89A35CC025E5D9AF008010C3 /* ServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocol.swift; sourceTree = "<group>"; };
 		89A35CC525E5DA4B008010C3 /* RegionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionServiceProtocol.swift; sourceTree = "<group>"; };
 		89A35CCC25E5DF2F008010C3 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		89A35CD425E5DF58008010C3 /* ButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBuilder.swift; sourceTree = "<group>"; };
@@ -103,6 +103,8 @@
 		89A35D4025E60B68008010C3 /* HomeRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemoteDataManager.swift; sourceTree = "<group>"; };
 		89A35D4125E60B68008010C3 /* HomeWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireFrame.swift; sourceTree = "<group>"; };
 		89A35D5625E60EA8008010C3 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		89A35D6225E6755D008010C3 /* RegionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionService.swift; sourceTree = "<group>"; };
+		89C8F0CF25E6946500A5B193 /* CommonControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonControls.swift; sourceTree = "<group>"; };
 		9D141EEB0008D14F4DFF4C00 /* Pods_PokeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F3C13AB874F8C7B3FD3AE4B /* Pods-PokeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeApp.release.xcconfig"; path = "Target Support Files/Pods-PokeApp/Pods-PokeApp.release.xcconfig"; sourceTree = "<group>"; };
 		DA36B64051C209E8BB0189EC /* Pods-PokeAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeAppTests.release.xcconfig"; path = "Target Support Files/Pods-PokeAppTests/Pods-PokeAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		897AD53C25E52F880096AA9E /* PokeApp */ = {
 			isa = PBXGroup;
 			children = (
+				89A35D6125E6754D008010C3 /* Services */,
 				89A35D1B25E5EC2D008010C3 /* Extensions */,
 				89A35CCB25E5DF1C008010C3 /* Builders */,
 				89A35CBE25E5D95E008010C3 /* Abstraction */,
@@ -197,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				89A35CCA25E5DB67008010C3 /* API */,
+				89C8F0CF25E6946500A5B193 /* CommonControls.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -246,7 +250,6 @@
 		89A35CBF25E5D970008010C3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				89A35CC025E5D9AF008010C3 /* ServiceProtocol.swift */,
 				89A35CC525E5DA4B008010C3 /* RegionServiceProtocol.swift */,
 			);
 			path = Protocols;
@@ -316,6 +319,14 @@
 				89A35D5625E60EA8008010C3 /* Region.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		89A35D6125E6754D008010C3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				89A35D6225E6755D008010C3 /* RegionService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		8AB969FAA24B52562CC4492D /* Pods */ = {
@@ -634,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89A35CA525E5D3D5008010C3 /* LoginPresenter.swift in Sources */,
+				89A35D6325E6755D008010C3 /* RegionService.swift in Sources */,
 				89A35CD525E5DF58008010C3 /* ButtonBuilder.swift in Sources */,
 				89A35CA825E5D3D5008010C3 /* LoginInteractor.swift in Sources */,
 				89A35D4225E60B68008010C3 /* HomePresenter.swift in Sources */,
@@ -642,6 +654,7 @@
 				89A35CDA25E5DF85008010C3 /* ViewBuilder.swift in Sources */,
 				89A35CDF25E5DFC6008010C3 /* LabelBuilder.swift in Sources */,
 				89A35D1725E5E579008010C3 /* BaseViewController.swift in Sources */,
+				89C8F0D025E6946500A5B193 /* CommonControls.swift in Sources */,
 				897AD53E25E52F880096AA9E /* AppDelegate.swift in Sources */,
 				89A35D1D25E5EC51008010C3 /* UIColor+Extension.swift in Sources */,
 				89A35D4725E60B68008010C3 /* HomeRemoteDataManager.swift in Sources */,
@@ -652,7 +665,6 @@
 				89A35CC625E5DA4B008010C3 /* RegionServiceProtocol.swift in Sources */,
 				897AD54025E52F880096AA9E /* SceneDelegate.swift in Sources */,
 				89A35D2825E5F0D2008010C3 /* UIAlertController+Extension.swift in Sources */,
-				89A35CC125E5D9AF008010C3 /* ServiceProtocol.swift in Sources */,
 				89A35CA925E5D3D5008010C3 /* LoginView.swift in Sources */,
 				89A35D2D25E60699008010C3 /* APIManager.swift in Sources */,
 				89A35D4525E60B68008010C3 /* HomeInteractor.swift in Sources */,

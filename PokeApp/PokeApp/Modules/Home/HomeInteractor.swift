@@ -13,9 +13,21 @@ class HomeInteractor: HomeInteractorInputProtocol {
     // MARK: Properties
     weak var presenter: HomeInteractorOutputProtocol?
     var remoteDatamanager: HomeRemoteDataManagerInputProtocol?
-
+    
+    init(remoteDatamanager: HomeRemoteDataManagerInputProtocol) {
+        self.remoteDatamanager = remoteDatamanager
+    }
+    
+    func requestRegions() {
+        remoteDatamanager?.getRegions()
+    }
 }
 
 extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
-    // TODO: Implement use case methods
+    func didReceived(_ result: Result<[Region], Error>) {
+        switch result {
+        case .success(let regions): presenter?.didLoad(regions: regions)
+        case .failure(let error): presenter?.didLoad(error: error)
+        }
+    }
 }
