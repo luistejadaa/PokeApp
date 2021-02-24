@@ -12,10 +12,14 @@ class LoginInteractor: LoginInteractorInputProtocol {
 
     // MARK: Properties
     weak var presenter: LoginInteractorOutputProtocol?
-    var remoteDatamanager: LoginRemoteDataManagerInputProtocol?
-
 }
 
-extension LoginInteractor: LoginRemoteDataManagerOutputProtocol {
-    // TODO: Implement use case methods
+extension LoginInteractor: UserAppDelegate {
+    func userDidSigIn(error: Error?) {
+        if let error = error {
+            presenter?.didLoad(error: error)
+        } else {
+            presenter?.didSigIn()
+        }
+    }
 }

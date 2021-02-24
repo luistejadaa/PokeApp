@@ -13,11 +13,19 @@ class LoginWireFrame: LoginWireFrameProtocol {
 
     class func createModule() -> UIViewController {
         let view = LoginView()
-        let interactor: LoginInteractorInputProtocol = LoginInteractor()
-        let wireFrame: LoginWireFrameProtocol = LoginWireFrame()
-        let presenter: LoginPresenterProtocol & LoginInteractorOutputProtocol = LoginPresenter(view: view, interactor: interactor, wireFrame: wireFrame)
+        let interactor = LoginInteractor()
+        let wireFrame = LoginWireFrame()
+        let presenter = LoginPresenter(view: view, interactor: interactor, wireFrame: wireFrame)
         view.presenter = presenter
         interactor.presenter = presenter
+        UserApp.shared.delegate = interactor
         return view
+    }
+    
+    func navigateToHome() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let homeModule = HomeWireFrame.createModule()
+            appDelegate.changeRootController(by: UINavigationController(rootViewController: homeModule))
+        }
     }
 }

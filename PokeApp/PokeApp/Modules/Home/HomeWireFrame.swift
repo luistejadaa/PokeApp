@@ -21,4 +21,11 @@ class HomeWireFrame: HomeWireFrameProtocol {
         interactor.remoteDatamanager?.remoteRequestHandler = interactor
         return view
     }
+    
+    func navigateToLogin() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let loginModule = LoginWireFrame.createModule()
+            appDelegate.changeRootController(by: loginModule)
+        }
+    }
 }

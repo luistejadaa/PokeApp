@@ -10,7 +10,7 @@ import Firebase
 import GoogleSignIn
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
@@ -28,12 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.delegate = UserApp.shared
+        UINavigationBar.appearance().tintColor = .mainYellow
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.mainYellow]
         if #available(iOS 13.0, *) {
             return true
         } else {
             window = UIWindow(frame: UIScreen.main.bounds)
-            window?.rootViewController = HomeWireFrame.createModule()
+            window?.rootViewController = UserApp.shared.firebaseUser == nil ? LoginWireFrame.createModule() : UINavigationController(rootViewController: HomeWireFrame.createModule())
             window?.makeKeyAndVisible()
         }
         return true
@@ -71,31 +73,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
     }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
-        var displayError: Error?
-        if error == nil {
-            
-            guard let authentication = user.authentication else { return }
-            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                                accessToken: authentication.accessToken)
-            Auth.auth().signIn(with: credential) {(_, fAuthError) in
-                if let fAuthError = fAuthError {
-                    displayError = fAuthError
-                } else {
-                    
-                }
+    func getWindow() -> UIWindow? {
+            if #available(iOS 13, *) {
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                      let delegate = windowScene.delegate as? SceneDelegate, let window = delegate.window else { return nil }
+                return window
             }
-        } else {
-            displayError = error
+            guard let delegate = UIApplication.shared.delegate as? AppDelegate, let window = delegate.window else { return nil }
+            return window
+            
         }
-        
-        if let displayError = displayError {
-            displayAlert(with: displayError)
-        }
-    }
     
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        
+    func changeRootController(by controller: UIViewController) {
+        let rootController = controller
+        if let window = getWindow() {
+            window.rootViewController = rootController
+            let options: UIView.AnimationOptions = .transitionCrossDissolve
+            let duration: TimeInterval = 0.5
+            UIView.transition(with: window, duration: duration, options: options, animations: {}, completion: nil)
+        }
     }
 }

@@ -56,5 +56,7 @@ class LoginView: BaseViewController {
 }
 
 extension LoginView: LoginViewProtocol {
-    // TODO: implement view output methods
+    func displayError(_ error: Error) {
+        presentAlert(with: "Error", message: error.localizedDescription, actions: [UIAlertAction(title: "Ok", style: .default, handler: nil)], completion: nil)
+    }
 }

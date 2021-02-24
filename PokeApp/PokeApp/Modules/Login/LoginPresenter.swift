@@ -24,11 +24,15 @@ class LoginPresenter {
 }
 
 extension LoginPresenter: LoginPresenterProtocol {
-    // TODO: implement presenter methods
     func viewDidLoad() {
     }
 }
 
 extension LoginPresenter: LoginInteractorOutputProtocol {
-    // TODO: implement interactor output methods
+    func didSigIn() {
+        wireFrame?.navigateToHome()
+    }
+    func didLoad(error: Error) {
+        view?.displayError(error)
+    }
 }

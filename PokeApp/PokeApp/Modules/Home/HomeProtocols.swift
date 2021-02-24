@@ -19,6 +19,7 @@ protocol HomeViewProtocol: class {
 protocol HomeWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
     static func createModule() -> UIViewController
+    func navigateToLogin()
 }
 
 protocol HomePresenterProtocol: class {
@@ -30,6 +31,7 @@ protocol HomePresenterProtocol: class {
     func viewDidLoad()
     func getRegionCount() -> Int
     func getRegion(at index: Int) -> Region?
+    func pushSignOut()
 }
 
 protocol HomeInteractorOutputProtocol: class {
@@ -37,14 +39,15 @@ protocol HomeInteractorOutputProtocol: class {
     
     func didLoad(regions: [Region])
     func didLoad(error: Error)
+    func didSignOut()
 }
 
 protocol HomeInteractorInputProtocol: class {
     // PRESENTER -> INTERACTOR
     var presenter: HomeInteractorOutputProtocol? { get set }
     var remoteDatamanager: HomeRemoteDataManagerInputProtocol? { get set }
-    
     func requestRegions()
+    func requestSignOut()
 }
 
 protocol HomeDataManagerInputProtocol: class {

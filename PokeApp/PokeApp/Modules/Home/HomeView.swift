@@ -22,11 +22,17 @@ class HomeView: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "signOutIcon"), style: .done, target: self, action: #selector(pushSignOutButton))
         regionTableView.dataSource = self
         regionTableView.delegate = self
+        navigationItem.title = "Areas"
         view.addSubview(regionTableView)
         setupConstraints()
         presenter?.viewDidLoad()
+    }
+    
+    @objc func pushSignOutButton() {
+        presenter?.pushSignOut()
     }
     
     func setupConstraints() {

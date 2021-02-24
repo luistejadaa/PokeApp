@@ -25,6 +25,11 @@ class HomePresenter {
 }
 
 extension HomePresenter: HomePresenterProtocol {
+    
+    func pushSignOut() {
+        interactor?.requestSignOut()
+    }
+    
     func getRegionCount() -> Int {
         regions?.count ?? 0
     }
@@ -44,8 +49,10 @@ extension HomePresenter: HomeInteractorOutputProtocol {
         self.regions = regions
         view?.reloadData()
     }
-    
     func didLoad(error: Error) {
         view?.displayError(error)
+    }
+    func didSignOut() {
+        wireFrame?.navigateToLogin()
     }
 }

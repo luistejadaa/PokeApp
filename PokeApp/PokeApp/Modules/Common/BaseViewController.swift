@@ -8,10 +8,10 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        view.tintColor = .mainYellow
     }
     
     func presentAlert(with title: String?, message: String?, actions: [UIAlertAction], completion: (() -> Void )?) {

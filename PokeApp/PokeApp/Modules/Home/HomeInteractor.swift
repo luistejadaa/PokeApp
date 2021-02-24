@@ -9,7 +9,7 @@
 import Foundation
 
 class HomeInteractor: HomeInteractorInputProtocol {
-
+    
     // MARK: Properties
     weak var presenter: HomeInteractorOutputProtocol?
     var remoteDatamanager: HomeRemoteDataManagerInputProtocol?
@@ -28,6 +28,16 @@ extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
         switch result {
         case .success(let regions): presenter?.didLoad(regions: regions)
         case .failure(let error): presenter?.didLoad(error: error)
+        }
+    }
+    
+    func requestSignOut() {
+        UserApp.shared.signOut { (result) in
+            if result {
+                presenter?.didSignOut()
+            } else {
+                presenter?.didLoad(error: NSError(domain: "Error", code: -1, userInfo: nil))
+            }
         }
     }
 }

@@ -12,11 +12,13 @@ import UIKit
 protocol LoginViewProtocol: class {
     // PRESENTER -> VIEW
     var presenter: LoginPresenterProtocol? { get set }
+    func displayError(_ error: Error)
 }
 
 protocol LoginWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
     static func createModule() -> UIViewController
+    func navigateToHome()
 }
 
 protocol LoginPresenterProtocol: class {
@@ -30,23 +32,15 @@ protocol LoginPresenterProtocol: class {
 
 protocol LoginInteractorOutputProtocol: class {
 // INTERACTOR -> PRESENTER
+    func didSigIn()
+    func didLoad(error: Error)
 }
 
 protocol LoginInteractorInputProtocol: class {
     // PRESENTER -> INTERACTOR
     var presenter: LoginInteractorOutputProtocol? { get set }
-    var remoteDatamanager: LoginRemoteDataManagerInputProtocol? { get set }
 }
 
 protocol LoginDataManagerInputProtocol: class {
     // INTERACTOR -> DATAMANAGER
-}
-
-protocol LoginRemoteDataManagerInputProtocol: class {
-    // INTERACTOR -> REMOTEDATAMANAGER
-    var remoteRequestHandler: LoginRemoteDataManagerOutputProtocol? { get set }
-}
-
-protocol LoginRemoteDataManagerOutputProtocol: class {
-    // REMOTEDATAMANAGER -> INTERACTOR
 }
