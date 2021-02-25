@@ -10,7 +10,13 @@ import Foundation
 import UIKit
 
 class RegionWireFrame: RegionWireFrameProtocol {
-
+    
+    func navigateToGroupDetail(from: RegionViewProtocol, _ species: [PokemonSpecies], groupName: String) {
+        if let viewController = from as? UIViewController {
+            viewController.navigationController?.pushViewController(GroupDetailWireFrame.createModule(groupName: groupName, species: species), animated: true)
+        }
+    }
+    
     class func createModule(with region: Region) -> UIViewController {
         let view = RegionView()
         let interactor = RegionInteractor(remoteDatamanager: RegionRemoteDataManager())
@@ -20,5 +26,11 @@ class RegionWireFrame: RegionWireFrameProtocol {
         interactor.presenter = presenter
         interactor.remoteDatamanager?.remoteRequestHandler = interactor
         return view
+    }
+    
+    func navigateToCreateGroup(from view: RegionViewProtocol, for region: Region) {
+        if let viewController = view as? UIViewController {
+            viewController.navigationController?.pushViewController(CreateGroupWireFrame.createModule(with: region), animated: true)
+        }
     }
 }

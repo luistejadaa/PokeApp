@@ -8,18 +8,26 @@
 import Foundation
 
 class RegionService: RegionServiceProtocol {
-    
-    typealias RegionType = Region
     static let shared: RegionService = {
         let instance = RegionService()
         return instance
     }()
     var apiManager: APIManager = .shared
     var regionPath = "region"
-    func getRegions(completion: @escaping (Result<[RegionType], Error>) -> Void) {
-        apiManager.getWithPagination(path: regionPath, queryItems: []) { (apiResponse: Result<APIResponse<RegionType>, Error>) in
+    
+    func getRegions(completion: @escaping (Result<[Region], Error>) -> Void) {
+        apiManager.getWithPagination(path: regionPath, queryItems: []) { (apiResponse: Result<APIResponse<Region>, Error>) in
             switch apiResponse {
             case.success(let response): completion(.success(response.results))
+            case .failure(let error): completion(.failure(error))
+            }
+        }
+    }
+    
+    func getRegion(_ regionName: String, completion: @escaping (Result<Region, Error>) -> Void) {
+        apiManager.getWithoutPagination(path: "\(regionPath)/\(regionName)/", queryItems: []) { (apiResponse: Result<Region, Error>) in
+            switch apiResponse {
+            case.success(let response): completion(.success(response))
             case .failure(let error): completion(.failure(error))
             }
         }

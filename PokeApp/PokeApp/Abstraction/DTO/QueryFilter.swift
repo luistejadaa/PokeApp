@@ -9,7 +9,7 @@ import Foundation
 
 struct QueryFilter {
     let field: String
-    let value: String
+    let value: Int
     let filterType: FilterType
 }
 

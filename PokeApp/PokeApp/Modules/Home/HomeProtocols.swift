@@ -66,8 +66,3 @@ protocol HomeRemoteDataManagerOutputProtocol: class {
     // REMOTEDATAMANAGER -> INTERACTOR
     func didReceived(_ result: Result<[Region], Error>)
 }
-
-protocol RegionServiceProtocol: class {
-    associatedtype RegionType
-    func getRegions(completion: @escaping (Result<[RegionType], Error>) -> Void)
-}

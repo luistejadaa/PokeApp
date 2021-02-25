@@ -16,7 +16,6 @@ final class APIManager {
         return instance
     }()
     
-    private let imageURL = "https://image.tmdb.org/t/p/"
     private let scheme = "https"
     private let base = "pokeapi.co"
     private let apiPath = "api"
@@ -62,6 +61,21 @@ final class APIManager {
         }
     }
     
+    func getWithoutPagination<T>(url: String, completion: @escaping (Result<T, Error>) -> Void) where T: Codable {
+        makeResponse(url: url)
+            .responseDecodable(of: T.self) { response in
+            if let error = response.error {
+                completion(.failure(error))
+            } else {
+                if response.value == nil {
+                    completion(.failure(NSError(domain: "Value is empty", code: -1, userInfo: nil)))
+                } else {
+                    completion(.success(response.value!))
+                }
+            }
+        }
+    }
+    
     private func makeResponse(path: String, queryItems: [URLQueryItem]) -> DataRequest {
          urlComponents.queryItems = queryItems
                urlComponents.path = "/\(apiPath)/\(apiVersion)/\(path)"
@@ -72,9 +86,17 @@ final class APIManager {
                .validate(contentType: ["application/json"])
     }
     
-    func getImage(imagePath: String, completion: @escaping (UIImage) -> Void) {
-        AF.request("\(imageURL)\(imagePath)", method: .get).responseImage { (response) in
-            completion(response.value ?? UIImage(named: "imageNotFound")!)
+    private func makeResponse(url: String) -> DataRequest {
+               return AF.request(url, method: .get) { urlRequest in
+                   urlRequest.timeoutInterval = 30
+               }
+               .validate(statusCode: 200...300)
+               .validate(contentType: ["application/json"])
+    }
+    
+    func getImage(url: String, completion: @escaping (UIImage) -> Void) {
+        AF.request(url, method: .get).responseImage { (response) in
+            completion(response.value ?? UIImage(named: "pokeballImage")!)
         }
     }
 }

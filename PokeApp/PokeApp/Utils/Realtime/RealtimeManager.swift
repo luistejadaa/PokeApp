@@ -7,10 +7,10 @@
 
 import Firebase
 
-final class FirestoreManager {
+final class RealtimeManager {
     
-    static let shared: FirestoreManager = {
-        let instance = FirestoreManager()
+    static let shared: RealtimeManager = {
+        let instance = RealtimeManager()
         return instance
     }()
     
@@ -58,9 +58,27 @@ final class FirestoreManager {
             .child(path)
             .child(id)
             .observeSingleEvent(of: .value) { (snapshot) in
-                completion(.success(snapshot.value as? [String:AnyObject]))
+                completion(.success(snapshot.value as? [String: AnyObject]))
             } withCancel: { (error) in
                 completion(.failure(error))
             }
     }
-}
+    
+    func getChilds(path: String, completion: @escaping (Result<[[String: AnyObject]], Error>) -> Void) {
+        ref
+            .child(path)
+            .observeSingleEvent(of: .value) { (snapshot) in
+                var list = [[String: AnyObject]]()
+                for snap in snapshot.children {
+                    if let data = snap as? DataSnapshot {
+                        if let dict = data.value as? [String: AnyObject] {
+                            list.append(dict)
+                        }
+                    }
+                }
+                completion(.success(list))
+            } withCancel: { (error) in
+                completion(.failure(error))
+            }
+        }
+    }
