@@ -28,4 +28,10 @@ class HomeWireFrame: HomeWireFrameProtocol {
             appDelegate.changeRootController(by: loginModule)
         }
     }
+    
+    func navigateToRegion(from view: HomeViewProtocol?, with region: Region) {
+        if let viewController = view as? UIViewController {
+            viewController.navigationController?.pushViewController(RegionWireFrame.createModule(with: region), animated: true)
+        }
+    }
 }

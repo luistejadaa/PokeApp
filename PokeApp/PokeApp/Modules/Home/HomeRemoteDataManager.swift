@@ -10,12 +10,12 @@ import Foundation
 
 class HomeRemoteDataManager: HomeRemoteDataManagerInputProtocol {
     
-    var service: RegionServiceProtocol = RegionService.shared
+    var service = RegionService.shared
     var remoteRequestHandler: HomeRemoteDataManagerOutputProtocol?
 
     func getRegions() {
-        service.getRegions { [self] (result) in
-            remoteRequestHandler?.didReceived(result)
+        service.getRegions { (result) in
+            self.remoteRequestHandler?.didReceived(result)
         }
     }
 }

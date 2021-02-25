@@ -15,13 +15,26 @@
 		897AD54A25E52F8A0096AA9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897AD54825E52F8A0096AA9E /* LaunchScreen.storyboard */; };
 		897AD55525E52F8B0096AA9E /* PokeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897AD55425E52F8B0096AA9E /* PokeAppTests.swift */; };
 		897AD56025E52F8B0096AA9E /* PokeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897AD55F25E52F8B0096AA9E /* PokeAppUITests.swift */; };
+		897EC12A25E7165C00D0A38C /* RegionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12325E7165C00D0A38C /* RegionPresenter.swift */; };
+		897EC12C25E7165C00D0A38C /* RegionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12525E7165C00D0A38C /* RegionProtocols.swift */; };
+		897EC12D25E7165C00D0A38C /* RegionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12625E7165C00D0A38C /* RegionInteractor.swift */; };
+		897EC12E25E7165C00D0A38C /* RegionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12725E7165C00D0A38C /* RegionView.swift */; };
+		897EC12F25E7165C00D0A38C /* RegionRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12825E7165C00D0A38C /* RegionRemoteDataManager.swift */; };
+		897EC13025E7165C00D0A38C /* RegionWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12925E7165C00D0A38C /* RegionWireFrame.swift */; };
+		897EC14025E7293E00D0A38C /* RegionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC13F25E7293E00D0A38C /* RegionDetail.swift */; };
+		897EC14525E72A4D00D0A38C /* Pokedex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC14425E72A4D00D0A38C /* Pokedex.swift */; };
+		897EC15F25E7337600D0A38C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC15E25E7337600D0A38C /* Group.swift */; };
+		897EC16725E733F300D0A38C /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC16625E733F300D0A38C /* Pokemon.swift */; };
+		897EC16C25E737B800D0A38C /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC16B25E737B800D0A38C /* GroupService.swift */; };
+		897EC17225E738B800D0A38C /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC17125E738B800D0A38C /* FirestoreManager.swift */; };
+		897EC17725E73A6600D0A38C /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC17625E73A6600D0A38C /* Codable+Extension.swift */; };
+		897EC17C25E7456C00D0A38C /* QueryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC17B25E7456C00D0A38C /* QueryFilter.swift */; };
 		89A35C2F25E5CBA1008010C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89A35C2E25E5CBA1008010C3 /* GoogleService-Info.plist */; };
 		89A35CA525E5D3D5008010C3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35C9E25E5D3D5008010C3 /* LoginPresenter.swift */; };
 		89A35CA725E5D3D5008010C3 /* LoginProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CA025E5D3D5008010C3 /* LoginProtocols.swift */; };
 		89A35CA825E5D3D5008010C3 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CA125E5D3D5008010C3 /* LoginInteractor.swift */; };
 		89A35CA925E5D3D5008010C3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CA225E5D3D5008010C3 /* LoginView.swift */; };
 		89A35CAB25E5D3D5008010C3 /* LoginWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CA425E5D3D5008010C3 /* LoginWireFrame.swift */; };
-		89A35CC625E5DA4B008010C3 /* RegionServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CC525E5DA4B008010C3 /* RegionServiceProtocol.swift */; };
 		89A35CCD25E5DF2F008010C3 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CCC25E5DF2F008010C3 /* Builder.swift */; };
 		89A35CD525E5DF58008010C3 /* ButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CD425E5DF58008010C3 /* ButtonBuilder.swift */; };
 		89A35CDA25E5DF85008010C3 /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A35CD925E5DF85008010C3 /* ViewBuilder.swift */; };
@@ -79,13 +92,26 @@
 		897AD55B25E52F8B0096AA9E /* PokeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		897AD55F25E52F8B0096AA9E /* PokeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeAppUITests.swift; sourceTree = "<group>"; };
 		897AD56125E52F8B0096AA9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		897EC12325E7165C00D0A38C /* RegionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionPresenter.swift; sourceTree = "<group>"; };
+		897EC12525E7165C00D0A38C /* RegionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionProtocols.swift; sourceTree = "<group>"; };
+		897EC12625E7165C00D0A38C /* RegionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionInteractor.swift; sourceTree = "<group>"; };
+		897EC12725E7165C00D0A38C /* RegionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionView.swift; sourceTree = "<group>"; };
+		897EC12825E7165C00D0A38C /* RegionRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionRemoteDataManager.swift; sourceTree = "<group>"; };
+		897EC12925E7165C00D0A38C /* RegionWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionWireFrame.swift; sourceTree = "<group>"; };
+		897EC13F25E7293E00D0A38C /* RegionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionDetail.swift; sourceTree = "<group>"; };
+		897EC14425E72A4D00D0A38C /* Pokedex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokedex.swift; sourceTree = "<group>"; };
+		897EC15E25E7337600D0A38C /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		897EC16625E733F300D0A38C /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		897EC16B25E737B800D0A38C /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
+		897EC17125E738B800D0A38C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		897EC17625E73A6600D0A38C /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
+		897EC17B25E7456C00D0A38C /* QueryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryFilter.swift; sourceTree = "<group>"; };
 		89A35C2E25E5CBA1008010C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		89A35C9E25E5D3D5008010C3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		89A35CA025E5D3D5008010C3 /* LoginProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocols.swift; sourceTree = "<group>"; };
 		89A35CA125E5D3D5008010C3 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		89A35CA225E5D3D5008010C3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		89A35CA425E5D3D5008010C3 /* LoginWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWireFrame.swift; sourceTree = "<group>"; };
-		89A35CC525E5DA4B008010C3 /* RegionServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionServiceProtocol.swift; sourceTree = "<group>"; };
 		89A35CCC25E5DF2F008010C3 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		89A35CD425E5DF58008010C3 /* ButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBuilder.swift; sourceTree = "<group>"; };
 		89A35CD925E5DF85008010C3 /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
@@ -164,10 +190,10 @@
 		897AD53C25E52F880096AA9E /* PokeApp */ = {
 			isa = PBXGroup;
 			children = (
+				89A35CBE25E5D95E008010C3 /* Abstraction */,
 				89A35D6125E6754D008010C3 /* Services */,
 				89A35D1B25E5EC2D008010C3 /* Extensions */,
 				89A35CCB25E5DF1C008010C3 /* Builders */,
-				89A35CBE25E5D95E008010C3 /* Abstraction */,
 				89A35C9C25E5D1DC008010C3 /* Modules */,
 				89A35C3325E5CBBC008010C3 /* Resources */,
 				897AD57025E540360096AA9E /* Utils */,
@@ -199,10 +225,44 @@
 		897AD57025E540360096AA9E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				897EC17025E738A400D0A38C /* Firestore */,
 				89A35CCA25E5DB67008010C3 /* API */,
 				89C8F0CF25E6946500A5B193 /* CommonControls.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		897EC13725E7166300D0A38C /* Region */ = {
+			isa = PBXGroup;
+			children = (
+				897EC13E25E7292C00D0A38C /* Models */,
+				897EC12325E7165C00D0A38C /* RegionPresenter.swift */,
+				897EC12525E7165C00D0A38C /* RegionProtocols.swift */,
+				897EC12625E7165C00D0A38C /* RegionInteractor.swift */,
+				897EC12725E7165C00D0A38C /* RegionView.swift */,
+				897EC12825E7165C00D0A38C /* RegionRemoteDataManager.swift */,
+				897EC12925E7165C00D0A38C /* RegionWireFrame.swift */,
+			);
+			path = Region;
+			sourceTree = "<group>";
+		};
+		897EC13E25E7292C00D0A38C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				897EC13F25E7293E00D0A38C /* RegionDetail.swift */,
+				897EC14425E72A4D00D0A38C /* Pokedex.swift */,
+				897EC15E25E7337600D0A38C /* Group.swift */,
+				897EC16625E733F300D0A38C /* Pokemon.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		897EC17025E738A400D0A38C /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				897EC17125E738B800D0A38C /* FirestoreManager.swift */,
+			);
+			path = Firestore;
 			sourceTree = "<group>";
 		};
 		89A35C3325E5CBBC008010C3 /* Resources */ = {
@@ -218,8 +278,9 @@
 		89A35C9C25E5D1DC008010C3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				89A35D3A25E60B51008010C3 /* Home */,
+				897EC13725E7166300D0A38C /* Region */,
 				89A35D1525E5E562008010C3 /* Common */,
+				89A35D3A25E60B51008010C3 /* Home */,
 				89A35C9D25E5D3C1008010C3 /* Login */,
 			);
 			path = Modules;
@@ -241,17 +302,8 @@
 			isa = PBXGroup;
 			children = (
 				89A35D3125E606F2008010C3 /* Models */,
-				89A35CBF25E5D970008010C3 /* Protocols */,
 			);
 			path = Abstraction;
-			sourceTree = "<group>";
-		};
-		89A35CBF25E5D970008010C3 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				89A35CC525E5DA4B008010C3 /* RegionServiceProtocol.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		89A35CCA25E5DB67008010C3 /* API */ = {
@@ -286,6 +338,7 @@
 			children = (
 				89A35D1C25E5EC51008010C3 /* UIColor+Extension.swift */,
 				89A35D2725E5F0D2008010C3 /* UIAlertController+Extension.swift */,
+				897EC17625E73A6600D0A38C /* Codable+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -295,6 +348,7 @@
 			children = (
 				89A35D3225E60711008010C3 /* APIResponse.swift */,
 				89C8F0D425E6BE5800A5B193 /* UserApp.swift */,
+				897EC17B25E7456C00D0A38C /* QueryFilter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -325,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				89A35D6225E6755D008010C3 /* RegionService.swift */,
+				897EC16B25E737B800D0A38C /* GroupService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -644,9 +699,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897EC13025E7165C00D0A38C /* RegionWireFrame.swift in Sources */,
 				89A35CA525E5D3D5008010C3 /* LoginPresenter.swift in Sources */,
+				897EC14525E72A4D00D0A38C /* Pokedex.swift in Sources */,
 				89A35D6325E6755D008010C3 /* RegionService.swift in Sources */,
 				89A35CD525E5DF58008010C3 /* ButtonBuilder.swift in Sources */,
+				897EC16725E733F300D0A38C /* Pokemon.swift in Sources */,
 				89A35CA825E5D3D5008010C3 /* LoginInteractor.swift in Sources */,
 				89A35D4225E60B68008010C3 /* HomePresenter.swift in Sources */,
 				89A35D4425E60B68008010C3 /* HomeProtocols.swift in Sources */,
@@ -654,20 +712,30 @@
 				89A35CDA25E5DF85008010C3 /* ViewBuilder.swift in Sources */,
 				89A35CDF25E5DFC6008010C3 /* LabelBuilder.swift in Sources */,
 				89A35D1725E5E579008010C3 /* BaseViewController.swift in Sources */,
+				897EC12E25E7165C00D0A38C /* RegionView.swift in Sources */,
 				89C8F0D025E6946500A5B193 /* CommonControls.swift in Sources */,
 				897AD53E25E52F880096AA9E /* AppDelegate.swift in Sources */,
+				897EC14025E7293E00D0A38C /* RegionDetail.swift in Sources */,
 				89C8F0D525E6BE5800A5B193 /* UserApp.swift in Sources */,
+				897EC16C25E737B800D0A38C /* GroupService.swift in Sources */,
 				89A35D1D25E5EC51008010C3 /* UIColor+Extension.swift in Sources */,
 				89A35D4725E60B68008010C3 /* HomeRemoteDataManager.swift in Sources */,
+				897EC12C25E7165C00D0A38C /* RegionProtocols.swift in Sources */,
 				89A35CCD25E5DF2F008010C3 /* Builder.swift in Sources */,
+				897EC12F25E7165C00D0A38C /* RegionRemoteDataManager.swift in Sources */,
+				897EC12D25E7165C00D0A38C /* RegionInteractor.swift in Sources */,
 				89A35CAB25E5D3D5008010C3 /* LoginWireFrame.swift in Sources */,
 				89A35CA725E5D3D5008010C3 /* LoginProtocols.swift in Sources */,
+				897EC17225E738B800D0A38C /* FirestoreManager.swift in Sources */,
 				89A35D4825E60B68008010C3 /* HomeWireFrame.swift in Sources */,
-				89A35CC625E5DA4B008010C3 /* RegionServiceProtocol.swift in Sources */,
 				897AD54025E52F880096AA9E /* SceneDelegate.swift in Sources */,
 				89A35D2825E5F0D2008010C3 /* UIAlertController+Extension.swift in Sources */,
+				897EC15F25E7337600D0A38C /* Group.swift in Sources */,
+				897EC17C25E7456C00D0A38C /* QueryFilter.swift in Sources */,
 				89A35CA925E5D3D5008010C3 /* LoginView.swift in Sources */,
+				897EC17725E73A6600D0A38C /* Codable+Extension.swift in Sources */,
 				89A35D2D25E60699008010C3 /* APIManager.swift in Sources */,
+				897EC12A25E7165C00D0A38C /* RegionPresenter.swift in Sources */,
 				89A35D4525E60B68008010C3 /* HomeInteractor.swift in Sources */,
 				89A35D4625E60B68008010C3 /* HomeView.swift in Sources */,
 				89A35D3325E60711008010C3 /* APIResponse.swift in Sources */,

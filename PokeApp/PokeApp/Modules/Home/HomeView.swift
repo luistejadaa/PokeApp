@@ -79,7 +79,7 @@ extension HomeView: UITableViewDataSource {
 
 extension HomeView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        presenter?.didSelectRegion(at: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

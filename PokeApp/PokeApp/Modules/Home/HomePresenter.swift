@@ -25,6 +25,9 @@ class HomePresenter {
 }
 
 extension HomePresenter: HomePresenterProtocol {
+    func didSelectRegion(at index: Int) {
+        wireFrame?.navigateToRegion(from: view, with: regions[index])
+    }
     
     func pushSignOut() {
         interactor?.requestSignOut()

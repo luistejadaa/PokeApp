@@ -9,7 +9,7 @@ import UIKit.UIImage
 import Alamofire
 import AlamofireImage
 
-class APIManager {
+final class APIManager {
     
     static let shared: APIManager = {
         let instance = APIManager()
