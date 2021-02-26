@@ -23,4 +23,17 @@ final class CommonControls {
         tableView.tableFooterView = UIView(frame: .zero)
         return tableView
     }
+    
+    /// Called for generate an UIImageView
+    /// - Parameters:
+    ///   - image: the image that the image view contains
+    ///   - contentMode: the content mode
+    /// - Returns: UIButton
+    static func generateImageView(with image: UIImage?, contentMode: UIView.ContentMode) -> UIImageView {
+        let imageView = UIImageView(frame: .zero)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = image
+        imageView.contentMode = contentMode
+        return imageView
+    }
 }

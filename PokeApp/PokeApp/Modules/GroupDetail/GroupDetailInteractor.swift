@@ -12,22 +12,11 @@ class GroupDetailInteractor: GroupDetailInteractorInputProtocol {
     
     // MARK: Properties
     weak var presenter: GroupDetailInteractorOutputProtocol?
-    var remoteDatamanager: GroupDetailRemoteDataManagerInputProtocol?
-
-    init(remoteDatamanager: GroupDetailRemoteDataManagerInputProtocol) {
-        self.remoteDatamanager = remoteDatamanager
-    }
+    var imageService = ImageService.shared
     
-    func getPokemons(species: [PokemonSpecies]) {
-        remoteDatamanager?.requestPokemons(from: species)
-    }
-}
-extension GroupDetailInteractor: GroupDetailRemoteDataManagerOutputProtocol {
-    func receivedError(_ error: Error) {
-        
-    }
-    
-    func receivedPokemon(_ pokemon: Pokemon) {
-        presenter?.loadPokemon(pokemon)
+    func requestThumbnail(for pokemonId: Int) {
+        imageService.getThumbnail(pokemonId: pokemonId) { (image) in
+            self.presenter?.didReceived(thumbnail: image, for: pokemonId)
+        }
     }
 }

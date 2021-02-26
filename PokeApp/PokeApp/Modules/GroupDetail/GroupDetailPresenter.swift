@@ -6,52 +6,51 @@
 //  
 //
 
-import Foundation
+import UIKit.UIImage
 
-class GroupDetailPresenter  {
-    
+class GroupDetailPresenter {
     // MARK: Properties
     weak var view: GroupDetailViewProtocol?
     var interactor: GroupDetailInteractorInputProtocol?
     var wireFrame: GroupDetailWireFrameProtocol?
-    
-    var pokemons: [Pokemon]!
-    var species: [PokemonSpecies]!
+    var speciesList: [PokemonSpecies]!
     var groupName: String!
     
     init(species: [PokemonSpecies], view: GroupDetailViewProtocol, interactor: GroupDetailInteractorInputProtocol, wireFrame: GroupDetailWireFrameProtocol, groupName: String) {
         self.view = view
         self.interactor = interactor
         self.wireFrame = wireFrame
-        self.species = species
+        self.speciesList = species
         self.groupName = groupName
     }
 }
 
 extension GroupDetailPresenter: GroupDetailPresenterProtocol {
-    
-    func getPokemonsCount() -> Int {
-        return pokemons.count
+    func pushPokemon(at index: Int) {
+        wireFrame?.navigateToPokemonDetail(from: view!, pokemonId: speciesList[index].species.pokemonId!)
     }
     
-    func getPokemon(at indexPath: Int) -> Pokemon {
-        return pokemons[indexPath]
+    func getPokemonThumbnail(pokemonId: Int) {
+        interactor?.requestThumbnail(for: pokemonId)
+    }
+    func getPokemonsCount() -> Int {
+        return speciesList.count
+    }
+    
+    func getPokemon(at indexPath: Int) -> PokemonSpecies {
+        return speciesList[indexPath]
     }
     
     func viewDidLoad() {
-        pokemons = [Pokemon]()
-        interactor?.getPokemons(species: species)
         view?.updateTitle(title: groupName)
     }
 }
 
 extension GroupDetailPresenter: GroupDetailInteractorOutputProtocol {
-    func loadError(_ error: Error) {
-        view?.displayError(error)
-    }
-    
-    func loadPokemon(_ pokemon: Pokemon) {
-        pokemons.append(pokemon)
-        view?.reloadData()
+    func didReceived(thumbnail: UIImage, for pokemonId: Int) {
+        if let index = speciesList.firstIndex(where: {$0.species.pokemonId == pokemonId}) {
+            speciesList[index].image = thumbnail
+            view?.reloadCell(at: index)
+        }
     }
 }

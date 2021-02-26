@@ -14,6 +14,7 @@ protocol RegionViewProtocol: class {
     var presenter: RegionPresenterProtocol? { get set }
     func updateTitle(regionName: String)
     func reloadData()
+    func displayError(error: Error)
 }
 
 protocol RegionWireFrameProtocol: class {
@@ -39,27 +40,16 @@ protocol RegionPresenterProtocol: class {
 protocol RegionInteractorOutputProtocol: class {
 // INTERACTOR -> PRESENTER
     func didLoad(groups: [Group])
+    func didLoad(error: Error)
 }
 
 protocol RegionInteractorInputProtocol: class {
     // PRESENTER -> INTERACTOR
     var presenter: RegionInteractorOutputProtocol? { get set }
-    var remoteDatamanager: RegionRemoteDataManagerInputProtocol? { get set }
     func requestGroups(forRegionId: Int)
-}
-
-protocol RegionDataManagerInputProtocol: class {
-    // INTERACTOR -> DATAMANAGER
 }
 
 protocol RegionRemoteDataManagerInputProtocol: class {
     // INTERACTOR -> REMOTEDATAMANAGER
-    var remoteRequestHandler: RegionRemoteDataManagerOutputProtocol? { get set }
     func getGroups(forRegionId: Int)
-}
-
-protocol RegionRemoteDataManagerOutputProtocol: class {
-    // REMOTEDATAMANAGER -> INTERACTOR
-    func didReceived(data: [[String: AnyObject]])
-    func didReceived(error: Error)
 }

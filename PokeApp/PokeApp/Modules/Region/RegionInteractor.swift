@@ -12,25 +12,18 @@ final class RegionInteractor: RegionInteractorInputProtocol {
     
     // MARK: Properties
     weak var presenter: RegionInteractorOutputProtocol?
-    var remoteDatamanager: RegionRemoteDataManagerInputProtocol?
-    
-    init(remoteDatamanager: RegionRemoteDataManagerInputProtocol) {
-        self.remoteDatamanager = remoteDatamanager
-    }
-    
+    let groupService = GroupService.shared
     func requestGroups(forRegionId: Int) {
-        remoteDatamanager?.getGroups(forRegionId: forRegionId)
-    }
-}
-
-extension RegionInteractor: RegionRemoteDataManagerOutputProtocol {
-    func didReceived(error: Error) {
-        
-    }
-    func didReceived(data: [[String: AnyObject]]) {
-        if let jsonData = try? JSONSerialization.data(withJSONObject: data, options: .fragmentsAllowed) {
-            if let groups = try? JSONDecoder().decode([Group].self, from: jsonData) {
-                self.presenter?.didLoad(groups: groups)
+        groupService.getGroups(forRegionId: forRegionId) { (result) in
+            switch result {
+            case .success(let groups):
+                if let jsonData = try? JSONSerialization.data(withJSONObject: groups, options: .fragmentsAllowed) {
+                    if let groups = try? JSONDecoder().decode([Group].self, from: jsonData) {
+                        self.presenter?.didLoad(groups: groups)
+                    }
+                }
+            case .failure(let error):
+                self.presenter?.didLoad(error: error)
             }
         }
     }

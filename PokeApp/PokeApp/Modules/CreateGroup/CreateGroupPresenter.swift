@@ -28,6 +28,13 @@ final class CreateGroupPresenter {
 }
 
 extension CreateGroupPresenter: CreateGroupPresenterProtocol {
+    
+    func pushPokemon(at indexPath: IndexPath) {
+        if let id = pokedexes[indexPath.section].pokemons?[indexPath.row].species.pokemonId {
+            wireFrame?.navigateToPokemonDetail(from: view!, pokemonId: id)
+        }
+    }
+    
     func saveGroup(name: String) {
         if pokemons.count >= 3 {
             interactor?.requestNewGroup(pokemons: pokemons, name: name, regionId: region.regionId!)
@@ -57,6 +64,7 @@ extension CreateGroupPresenter: CreateGroupPresenterProtocol {
     func removePokemon(at indexPath: IndexPath) {
         if let pokemon = pokedexes[indexPath.section].pokemons?[indexPath.row] {
             pokemons.removeAll(where: {$0.species.pokemonId == pokemon.species.pokemonId})
+            view?.reloadCell(at: indexPath)
         }
     }
     

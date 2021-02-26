@@ -7,23 +7,25 @@
 
 import UIKit.UIImage
 
+import Foundation
+
+// MARK: - Welcome
 struct Pokemon: Codable {
-    let id: Int!
-    let name: String!
-    let types: [Type]?
-    var thumbnail: UIImage?
+    let abilities: [Ability]
+    let height: Int
+    let id: Int
+    let name: String
+    let weight: Int
+}
+
+struct Ability: Codable {
+    let ability: AbilityDetail
+
     private enum CodingKeys: String, CodingKey {
-        case id, name, types
+        case ability
     }
-    
 }
-
-struct Type: Codable {
-    let slot: Int!
-    let type: TypeDetail!
-}
-
-struct TypeDetail: Codable {
-    let name: String!
-    let url: String!
+struct AbilityDetail: Codable {
+    let name: String
+    let url: String
 }

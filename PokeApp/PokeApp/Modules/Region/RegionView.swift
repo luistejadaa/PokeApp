@@ -50,6 +50,9 @@ class RegionView: BaseViewController {
 }
 
 extension RegionView: RegionViewProtocol {
+    func displayError(error: Error) {
+        presentAlert(with: "Error", message: error.localizedDescription, actions: [UIAlertAction(title: "Ok", style: .default, handler: nil)], completion: nil)
+    }
     func reloadData() {
         groupTableView.reloadData()
     }
@@ -74,7 +77,7 @@ extension RegionView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Grupos"
+        return "Groups created in this area"
     }
 }
 

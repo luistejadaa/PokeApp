@@ -6,7 +6,6 @@
 //  
 //
 
-import Foundation
 import UIKit
 
 protocol CreateGroupViewProtocol: class {
@@ -21,6 +20,7 @@ protocol CreateGroupViewProtocol: class {
 protocol CreateGroupWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
     static func createModule(with region: Region) -> UIViewController
+    func navigateToPokemonDetail(from: CreateGroupViewProtocol, pokemonId: Int)
 }
 
 protocol CreateGroupPresenterProtocol: class {
@@ -40,6 +40,7 @@ protocol CreateGroupPresenterProtocol: class {
     func removePokemon(at indexPath: IndexPath)
     func getPokemonSpecies(at indexPath: IndexPath) -> PokemonSpecies?
     func saveGroup(name: String)
+    func pushPokemon(at indexPath: IndexPath)
 }
 
 protocol CreateGroupInteractorOutputProtocol: class {

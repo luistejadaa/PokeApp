@@ -12,11 +12,13 @@ import UIKit
 protocol PokemonViewProtocol: class {
     // PRESENTER -> VIEW
     var presenter: PokemonPresenterProtocol? { get set }
+    func updateArt(image: UIImage)
+    func reloadData()
 }
 
 protocol PokemonWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
-    static func createPokemonModule() -> UIViewController
+    static func createModule(pokemonId: Int) -> UIViewController
 }
 
 protocol PokemonPresenterProtocol: class {
@@ -26,27 +28,26 @@ protocol PokemonPresenterProtocol: class {
     var wireFrame: PokemonWireFrameProtocol? { get set }
     
     func viewDidLoad()
+    func getDetailCount() -> Int
+    func getDetail(at index: Int) -> (title: String, description: String)?
+    func getPokemonName() -> String?
 }
 
 protocol PokemonInteractorOutputProtocol: class {
 // INTERACTOR -> PRESENTER
+    func didReceivedArt(image: UIImage)
+    func didReceivedDetailt(_ detail: [String: String], pokemonName: String)
 }
 
 protocol PokemonInteractorInputProtocol: class {
     // PRESENTER -> INTERACTOR
     var presenter: PokemonInteractorOutputProtocol? { get set }
-    var remoteDatamanager: PokemonRemoteDataManagerInputProtocol? { get set }
+    func requestArtImage(for pokemonId: Int)
+    func requestPokemonDetail(for pokemonId: Int)
 }
 
 protocol PokemonDataManagerInputProtocol: class {
     // INTERACTOR -> DATAMANAGER
-}
-
-protocol PokemonRemoteDataManagerInputProtocol: class {
-    // INTERACTOR -> REMOTEDATAMANAGER
-    var remoteRequestHandler: PokemonRemoteDataManagerOutputProtocol? { get set }
-}
-
-protocol PokemonRemoteDataManagerOutputProtocol: class {
-    // REMOTEDATAMANAGER -> INTERACTOR
+    func getArtImage(pokemonId: Int)
+    func getPokemonDetail(pokemonId: Int)
 }

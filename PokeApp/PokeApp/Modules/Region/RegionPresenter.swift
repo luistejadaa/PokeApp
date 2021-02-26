@@ -55,6 +55,9 @@ extension RegionPresenter: RegionPresenterProtocol {
 }
 
 extension RegionPresenter: RegionInteractorOutputProtocol {
+    func didLoad(error: Error) {
+        view?.displayError(error: error)
+    }
     func didLoad(groups: [Group]) {
         self.groups = groups
         view?.reloadData()

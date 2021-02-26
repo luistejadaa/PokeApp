@@ -10,7 +10,13 @@ import Foundation
 import UIKit
 
 class CreateGroupWireFrame: CreateGroupWireFrameProtocol {
-
+    
+    func navigateToPokemonDetail(from: CreateGroupViewProtocol, pokemonId: Int) {
+        if let viewController = from as? UIViewController {
+            viewController.navigationController?.pushViewController(PokemonWireFrame.createModule(pokemonId: pokemonId), animated: true)
+        }
+    }
+    
     class func createModule(with region: Region) -> UIViewController {
         let view = CreateGroupView()
         let interactor = CreateGroupInteractor(remoteDatamanager: CreateGroupRemoteDataManager())

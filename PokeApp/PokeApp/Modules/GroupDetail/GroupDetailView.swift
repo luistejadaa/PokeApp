@@ -21,8 +21,11 @@ class GroupDetailView: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
         view.addSubview(pokemonsTableView)
         pokemonsTableView.dataSource = self
+        pokemonsTableView.delegate = self
         setupConstraints()
         
         presenter?.viewDidLoad()
@@ -64,8 +67,25 @@ extension GroupDetailView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pokemonCell", for: indexPath)
         if let pokemon = presenter?.getPokemon(at: indexPath.row) {
-            cell.textLabel?.text = pokemon.name
+            cell.textLabel?.text = pokemon.species.name
+            cell.imageView?.image = #imageLiteral(resourceName: "pokeballImage")
+            if let image = pokemon.image {
+                cell.imageView?.image = image
+            } else {
+                DispatchQueue.global(qos: .background).async {
+                    if let pokemonId = pokemon.species.pokemonId {
+                        self.presenter?.getPokemonThumbnail(pokemonId: pokemonId)
+                    }
+                }
+            }
         }
         return cell
+    }
+}
+
+extension GroupDetailView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.pushPokemon(at: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

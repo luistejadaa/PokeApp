@@ -12,13 +12,16 @@ final class PokemonService: PokemonServiceProtocol {
         return instance
     }()
     
+    let directlyPokemon = "https://pokeapi.co/api/v2/pokemon/"
     let apiManager = APIManager.shared
-    func getPokemon(from url: String, completion: @escaping (Result<Pokemon, Error>) -> Void) {
-        apiManager.getWithoutPagination(url: url) { (result: Result<Pokemon, Error>) in
+    func getPokemon(from pokemonId: Int, completion: @escaping (Result<Pokemon, Error>) -> Void) {
+        print(pokemonId)
+        apiManager.getWithoutPagination(url: "\(directlyPokemon)/\(pokemonId)") { (result: Result<Pokemon, Error>) in
             switch result {
             case .success(let pokemon):
                 completion(.success(pokemon))
             case .failure(let error):
+                print(error.localizedDescription)
                 completion(.failure(error))
             }
         }

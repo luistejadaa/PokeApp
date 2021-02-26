@@ -95,11 +95,12 @@ extension CreateGroupView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pokemonCell", for: indexPath)
-        cell.textLabel?.text = presenter?.getPokemonName(at: indexPath.row, forPokedex: indexPath.section)?.capitalized
         if let presenter = presenter {
             cell.accessoryType = presenter.checkIfPokemonIsAdded(at: indexPath) ? .checkmark : .none
-            if let species = presenter.getPokemonSpecies(at: indexPath) {
-                if let image = species.image {
+            if let pokemon = presenter.getPokemonSpecies(at: indexPath) {
+                cell.textLabel?.text = pokemon.species.name
+                cell.imageView?.image = #imageLiteral(resourceName: "pokeballImage")
+                if let image = pokemon.image {
                     cell.imageView?.image = image
                 } else {
                     DispatchQueue.global(qos: .background).async {
@@ -108,7 +109,6 @@ extension CreateGroupView: UITableViewDataSource {
                 }
             }
         }
-        cell.selectionStyle = .none
         return cell
     }
     
@@ -135,5 +135,10 @@ extension CreateGroupView: UITableViewDelegate {
             action.backgroundColor = .systemRed
         }
         return [action]
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.pushPokemon(at: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

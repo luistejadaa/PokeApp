@@ -6,5 +6,5 @@
 //
 
 protocol PokemonServiceProtocol {
-    func getPokemon(from url: String, completion: @escaping (Result<Pokemon, Error>) -> Void)
+    func getPokemon(from pokemonId: Int, completion: @escaping (Result<Pokemon, Error>) -> Void)
 }

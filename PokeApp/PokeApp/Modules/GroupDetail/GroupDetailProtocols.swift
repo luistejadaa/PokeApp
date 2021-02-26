@@ -21,6 +21,7 @@ protocol GroupDetailViewProtocol: class {
 protocol GroupDetailWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
     static func createModule(groupName: String, species: [PokemonSpecies]) -> UIViewController
+    func navigateToPokemonDetail(from: GroupDetailViewProtocol, pokemonId: Int)
 }
 
 protocol GroupDetailPresenterProtocol: class {
@@ -28,37 +29,21 @@ protocol GroupDetailPresenterProtocol: class {
     var view: GroupDetailViewProtocol? { get set }
     var interactor: GroupDetailInteractorInputProtocol? { get set }
     var wireFrame: GroupDetailWireFrameProtocol? { get set }
+    func getPokemonThumbnail(pokemonId: Int)
     
     func viewDidLoad()
     func getPokemonsCount() -> Int
-    func getPokemon(at indexPath: Int) -> Pokemon
+    func getPokemon(at indexPath: Int) -> PokemonSpecies
+    func pushPokemon(at index: Int)
 }
 
 protocol GroupDetailInteractorOutputProtocol: class {
 // INTERACTOR -> PRESENTER
-    func loadPokemon(_ pokemon: Pokemon)
-    func loadError(_ error: Error)
+    func didReceived(thumbnail: UIImage, for pokemonId: Int)
 }
 
 protocol GroupDetailInteractorInputProtocol: class {
     // PRESENTER -> INTERACTOR
     var presenter: GroupDetailInteractorOutputProtocol? { get set }
-    var remoteDatamanager: GroupDetailRemoteDataManagerInputProtocol? { get set }
-    func getPokemons(species: [PokemonSpecies])
-}
-
-protocol GroupDetailDataManagerInputProtocol: class {
-    // INTERACTOR -> DATAMANAGER
-}
-
-protocol GroupDetailRemoteDataManagerInputProtocol: class {
-    // INTERACTOR -> REMOTEDATAMANAGER
-    var remoteRequestHandler: GroupDetailRemoteDataManagerOutputProtocol? { get set }
-    func requestPokemons(from species: [PokemonSpecies])
-}
-
-protocol GroupDetailRemoteDataManagerOutputProtocol: class {
-    // REMOTEDATAMANAGER -> INTERACTOR
-    func receivedPokemon(_ pokemon: Pokemon)
-    func receivedError(_ error: Error)
+    func requestThumbnail(for pokemonId: Int)
 }
