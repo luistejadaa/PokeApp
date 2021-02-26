@@ -30,12 +30,14 @@ class LoginView: BaseViewController {
     // MARK: Lifecycle
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        
         view.backgroundColor = .mainYellow
         GIDSignIn.sharedInstance()?.presentingViewController = self
         view.addSubview(titleLabel)
         view.addSubview(sigInButton)
         setupConstraints()
+        
+        super.viewDidLoad()
     }
     
     func setupConstraints() {

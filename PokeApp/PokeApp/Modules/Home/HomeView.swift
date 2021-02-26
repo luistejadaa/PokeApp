@@ -20,19 +20,26 @@ class HomeView: BaseViewController {
     // MARK: Lifecycle
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "signOutIcon"), style: .done, target: self, action: #selector(pushSignOutButton))
         regionTableView.dataSource = self
         regionTableView.delegate = self
+        regionTableView.refreshControl = CommonControls.generateRefreshControl(target: self, action: #selector(refreshData), for: .valueChanged)
         navigationItem.title = "Areas"
         view.addSubview(regionTableView)
         setupConstraints()
+        
+        super.viewDidLoad()
         presenter?.viewDidLoad()
+        startActivity()
     }
     
     @objc func pushSignOutButton() {
         presenter?.pushSignOut()
+    }
+    
+    @objc func refreshData() {
+        presenter?.viewDidLoad()
     }
     
     func setupConstraints() {
@@ -53,6 +60,8 @@ extension HomeView: HomeViewProtocol {
     }
     
     func reloadData() {
+        stopActivity()
+        regionTableView.refreshControl?.endRefreshing()
         regionTableView.reloadData()
     }
 }

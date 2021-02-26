@@ -36,4 +36,11 @@ final class CommonControls {
         imageView.contentMode = contentMode
         return imageView
     }
+    
+    static func generateRefreshControl(target: Any?, action: Selector, for event: UIControl.Event) -> UIRefreshControl {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .mainYellow
+        refreshControl.addTarget(target, action: action, for: event)
+        return refreshControl
+    }
 }

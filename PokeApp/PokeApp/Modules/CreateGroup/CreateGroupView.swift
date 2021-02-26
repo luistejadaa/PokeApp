@@ -20,8 +20,6 @@ class CreateGroupView: BaseViewController {
     // MARK: Lifecycle
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
         navigationItem.title = "Create group"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(pushDoneButton))
         view.addSubview(pokemonsTableView)
@@ -29,7 +27,9 @@ class CreateGroupView: BaseViewController {
         pokemonsTableView.dataSource = self
         setupConstraints()
         
+        super.viewDidLoad()
         presenter?.viewDidLoad()
+        startActivity()
     }
     
     @objc func pushDoneButton() {
@@ -86,6 +86,7 @@ extension CreateGroupView: CreateGroupViewProtocol {
     
     func reloadData() {
         pokemonsTableView.reloadData()
+        stopActivity()
     }
 }
 

@@ -20,15 +20,15 @@ class GroupDetailView: BaseViewController {
     // MARK: Lifecycle
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(pushEditButton))
         view.addSubview(pokemonsTableView)
         pokemonsTableView.dataSource = self
         pokemonsTableView.delegate = self
         setupConstraints()
         
+        super.viewDidLoad()
         presenter?.viewDidLoad()
+        startActivity()
     }
     
     func setupConstraints() {
@@ -56,6 +56,7 @@ extension GroupDetailView: GroupDetailViewProtocol {
     
     func reloadData() {
         pokemonsTableView.reloadData()
+        stopActivity()
     }
     
     func reloadCell(at index: Int) {
@@ -92,4 +93,5 @@ extension GroupDetailView: UITableViewDelegate {
         presenter?.pushPokemon(at: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
 }

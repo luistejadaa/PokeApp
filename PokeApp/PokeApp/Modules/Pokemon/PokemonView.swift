@@ -24,14 +24,15 @@ class PokemonView: BaseViewController {
     // MARK: Lifecycle
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
         view.addSubview(imageView)
         view.addSubview(detailTableView)
         detailTableView.dataSource = self
         
         setupConstraints()
+        
+        super.viewDidLoad()
         presenter?.viewDidLoad()
+        startActivity()
     }
     
     func setupConstraints() {
@@ -53,6 +54,7 @@ extension PokemonView: PokemonViewProtocol {
     func reloadData() {
         detailTableView.reloadData()
         navigationItem.title = presenter?.getPokemonName()?.capitalized
+        stopActivity()
     }
     
     func updateArt(image: UIImage) {

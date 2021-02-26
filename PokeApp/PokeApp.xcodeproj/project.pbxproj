@@ -359,8 +359,8 @@
 		89A35C9C25E5D1DC008010C3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				896B18BF25E8029F003A0A33 /* GroupDetail */,
 				89A35D1525E5E562008010C3 /* Common */,
+				896B18BF25E8029F003A0A33 /* GroupDetail */,
 				897EC1A325E7710800D0A38C /* Pokemon */,
 				897EC18625E749F400D0A38C /* CreateGroup */,
 				897EC13725E7166300D0A38C /* Region */,

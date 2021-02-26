@@ -26,13 +26,20 @@ class RegionView: BaseViewController {
         view.addSubview(groupTableView)
         groupTableView.delegate = self
         groupTableView.dataSource = self
+        let refreshControl = CommonControls.generateRefreshControl(target: self, action: #selector(refreshData), for: .valueChanged)
+        groupTableView.refreshControl = refreshControl
         setupConstraints()
         super.viewDidLoad()
+    }
+    
+    @objc func refreshData() {
+        presenter?.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.viewDidLoad()
+        startActivity()
     }
     
     @objc func pushCreateGroupButton() {
@@ -55,6 +62,8 @@ extension RegionView: RegionViewProtocol {
     }
     func reloadData() {
         groupTableView.reloadData()
+        stopActivity()
+        groupTableView.refreshControl?.endRefreshing()
     }
     func updateTitle(regionName: String) {
         navigationItem.title = regionName.capitalized
