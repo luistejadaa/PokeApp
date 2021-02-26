@@ -11,11 +11,17 @@ import UIKit
 
 class GroupDetailWireFrame: GroupDetailWireFrameProtocol {
 
-    class func createModule(groupName: String, species: [PokemonSpecies]) -> UIViewController {
+    func navigateToEditGroup(from: GroupDetailViewProtocol, region: Region, group: Group) {
+        if let viewController = from as? UIViewController {
+            viewController.navigationController?.pushViewController(CreateGroupWireFrame.createModule(group: group, with: region), animated: true)
+        }
+    }
+    
+    class func createModule(region: Region, group: Group) -> UIViewController {
         let view = GroupDetailView()
         let interactor = GroupDetailInteractor()
         let wireFrame = GroupDetailWireFrame()
-        let presenter = GroupDetailPresenter(species: species, view: view, interactor: interactor, wireFrame: wireFrame, groupName: groupName)
+        let presenter = GroupDetailPresenter(region: region, group: group, view: view, interactor: interactor, wireFrame: wireFrame)
         view.presenter = presenter
         interactor.presenter = presenter
         return view
@@ -25,7 +31,5 @@ class GroupDetailWireFrame: GroupDetailWireFrameProtocol {
         if let viewController = from as? UIViewController {
             viewController.navigationController?.pushViewController(PokemonWireFrame.createModule(pokemonId: pokemonId), animated: true)
         }
-
     }
-    
 }

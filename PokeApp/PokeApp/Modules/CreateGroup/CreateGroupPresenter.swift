@@ -16,18 +16,36 @@ final class CreateGroupPresenter {
     var wireFrame: CreateGroupWireFrameProtocol?
     var pokedexes: [Pokedex]!
     var region: Region!
-    var pokemons: [PokemonSpecies]!
+    var group: Group!
     
-    init(with region: Region, view: CreateGroupViewProtocol, interactor: CreateGroupInteractorInputProtocol, wireFrame: CreateGroupWireFrameProtocol) {
+    init(with region: Region, group: Group?, view: CreateGroupViewProtocol, interactor: CreateGroupInteractorInputProtocol, wireFrame: CreateGroupWireFrameProtocol) {
         self.view = view
         self.interactor = interactor
         self.wireFrame = wireFrame
         self.region = region
-        pokemons = [PokemonSpecies]()
+        self.group = group == nil ? Group(regionId: region.regionId, pokemons: [PokemonSpecies]()) : group
     }
 }
 
 extension CreateGroupPresenter: CreateGroupPresenterProtocol {
+    
+    func updateGroup() {
+        saveGroup(name: group.name)
+    }
+    
+    func isEditMode() -> Bool {
+        if let name = group.name, !name.isEmpty {
+            return true
+        }
+        return false
+    }
+    
+    func movePokemon(from: IndexPath, to: IndexPath) {
+        if let pokemonToMove = pokedexes[from.section].pokemons?[from.row] {
+            pokedexes[from.section].pokemons?.remove(at: from.row)
+            pokedexes[from.section].pokemons?.insert(pokemonToMove, at: to.row)
+        }
+    }
     
     func pushPokemon(at indexPath: IndexPath) {
         if let id = pokedexes[indexPath.section].pokemons?[indexPath.row].species.pokemonId {
@@ -36,8 +54,9 @@ extension CreateGroupPresenter: CreateGroupPresenterProtocol {
     }
     
     func saveGroup(name: String) {
-        if pokemons.count >= 3 {
-            interactor?.requestNewGroup(pokemons: pokemons, name: name, regionId: region.regionId!)
+        if group.pokemons.count >= 3 {
+            group.name = name
+            interactor?.requestNewGroup(group: &group)
         } else {
             view?.displayError(NSError(domain: "You cannot add less than three Pokémon", code: 0, userInfo: nil))
         }
@@ -51,26 +70,31 @@ extension CreateGroupPresenter: CreateGroupPresenterProtocol {
     }
     
     func addPokemon(at indexPath: IndexPath) {
-        if pokemons.count < 6 {
+        if group.pokemons.count < 6 {
             if let pokemon = pokedexes[indexPath.section].pokemons?[indexPath.row] {
-                pokemons.append(pokemon)
+                group.pokemons.append(pokemon)
+                pokedexes[indexPath.section].pokemons?.remove(at: indexPath.row)
+                pokedexes[indexPath.section].pokemons?.insert(pokemon, at: 0)
+                view?.reloadData()
             }
         } else {
             view?.displayError(NSError(domain: "You cannot add more than six Pokémon", code: 0, userInfo: nil))
         }
-        view?.reloadCell(at: indexPath)
+        
     }
     
     func removePokemon(at indexPath: IndexPath) {
         if let pokemon = pokedexes[indexPath.section].pokemons?[indexPath.row] {
-            pokemons.removeAll(where: {$0.species.pokemonId == pokemon.species.pokemonId})
-            view?.reloadCell(at: indexPath)
+            group.pokemons.removeAll(where: {$0.species.pokemonId == pokemon.species.pokemonId})
+            pokedexes[indexPath.section].pokemons?.remove(at: indexPath.row)
+            pokedexes[indexPath.section].pokemons?.insert(pokemon, at: group.pokemons.count)
+            view?.reloadData()
         }
     }
     
     func checkIfPokemonIsAdded(at indexPath: IndexPath) -> Bool {
         if let pokemon = pokedexes[indexPath.section].pokemons?[indexPath.row] {
-            return pokemons.contains(where: {$0.species.pokemonId == pokemon.species.pokemonId})
+            return group.pokemons.contains(where: {$0.species.pokemonId == pokemon.species.pokemonId})
         }
         return false
     }
@@ -107,7 +131,7 @@ extension CreateGroupPresenter: CreateGroupInteractorOutputProtocol {
         if let error = error {
             view?.displayError(error)
         } else {
-            view?.groupCreated(message: "Group was created")
+            view?.groupCreated(message: "Done")
         }
     }
     
@@ -124,6 +148,11 @@ extension CreateGroupPresenter: CreateGroupInteractorOutputProtocol {
     
     func didLoad(pokedexes: [Pokedex]) {
         self.pokedexes = pokedexes
+        for pokemon in group.pokemons {
+            self.pokedexes[0].pokemons!.sort { (pokemonToSort, _) -> Bool in
+                return pokemonToSort.species.pokemonId == pokemon.species.pokemonId
+            }
+        }
         view?.reloadData()
     }
     

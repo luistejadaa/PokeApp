@@ -20,8 +20,9 @@ protocol GroupDetailViewProtocol: class {
 
 protocol GroupDetailWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
-    static func createModule(groupName: String, species: [PokemonSpecies]) -> UIViewController
+    static func createModule(region: Region, group: Group) -> UIViewController
     func navigateToPokemonDetail(from: GroupDetailViewProtocol, pokemonId: Int)
+    func navigateToEditGroup(from: GroupDetailViewProtocol, region: Region, group: Group)
 }
 
 protocol GroupDetailPresenterProtocol: class {
@@ -35,6 +36,7 @@ protocol GroupDetailPresenterProtocol: class {
     func getPokemonsCount() -> Int
     func getPokemon(at indexPath: Int) -> PokemonSpecies
     func pushPokemon(at index: Int)
+    func pushEditGroup()
 }
 
 protocol GroupDetailInteractorOutputProtocol: class {

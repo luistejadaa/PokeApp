@@ -29,7 +29,7 @@ class RegionPresenter {
 
 extension RegionPresenter: RegionPresenterProtocol {
     func pushGroup(at index: Int) {
-        wireFrame?.navigateToGroupDetail(from: view!, groups[index].pokemons, groupName: groups[index].name)
+        wireFrame?.navigateToGroupDetail(from: view!, region: region!, group: groups[index])
     }
 
     func getGroupsCount() -> Int {

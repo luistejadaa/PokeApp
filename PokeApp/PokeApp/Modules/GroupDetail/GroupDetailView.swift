@@ -22,7 +22,7 @@ class GroupDetailView: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(pushEditButton))
         view.addSubview(pokemonsTableView)
         pokemonsTableView.dataSource = self
         pokemonsTableView.delegate = self
@@ -38,6 +38,10 @@ class GroupDetailView: BaseViewController {
             pokemonsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             pokemonsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+    
+    @objc func pushEditButton() {
+        presenter?.pushEditGroup()
     }
 }
 

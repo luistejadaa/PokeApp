@@ -21,7 +21,7 @@ protocol RegionWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
     static func createModule(with: Region) -> UIViewController
     func navigateToCreateGroup(from: RegionViewProtocol, for: Region)
-    func navigateToGroupDetail(from: RegionViewProtocol, _ species: [PokemonSpecies], groupName: String)
+    func navigateToGroupDetail(from: RegionViewProtocol, region: Region, group: Group)
 }
 
 protocol RegionPresenterProtocol: class {

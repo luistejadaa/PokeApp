@@ -30,7 +30,7 @@ class GroupService: GroupServiceProtocol {
     
     func saveGroup(group: Group, completion: @escaping (Error?) -> Void) {
         if let userId = UserApp.shared.userId {
-            database.writeChild(path: "users/\(userId)/groups/\(group.regionId!)/", values: group) { (error) in
+            database.writeChild(path: "users/\(userId)/groups/\(group.regionId!)/", id: group.id, values: group) { (error) in
                 completion(error)
             }
         }

@@ -11,9 +11,9 @@ import UIKit
 
 class RegionWireFrame: RegionWireFrameProtocol {
     
-    func navigateToGroupDetail(from: RegionViewProtocol, _ species: [PokemonSpecies], groupName: String) {
+    func navigateToGroupDetail(from: RegionViewProtocol, region: Region, group: Group) {
         if let viewController = from as? UIViewController {
-            viewController.navigationController?.pushViewController(GroupDetailWireFrame.createModule(groupName: groupName, species: species), animated: true)
+            viewController.navigationController?.pushViewController(GroupDetailWireFrame.createModule(region: region, group: group), animated: true)
         }
     }
     
@@ -29,7 +29,7 @@ class RegionWireFrame: RegionWireFrameProtocol {
     
     func navigateToCreateGroup(from view: RegionViewProtocol, for region: Region) {
         if let viewController = view as? UIViewController {
-            viewController.navigationController?.pushViewController(CreateGroupWireFrame.createModule(with: region), animated: true)
+            viewController.navigationController?.pushViewController(CreateGroupWireFrame.createModule(group: nil, with: region), animated: true)
         }
     }
 }

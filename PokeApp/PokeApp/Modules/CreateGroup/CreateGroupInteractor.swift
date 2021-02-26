@@ -26,8 +26,10 @@ class CreateGroupInteractor: CreateGroupInteractorInputProtocol {
     func requestThumbnail(pokemonId: Int) {
         remoteDatamanager?.getThumbnail(pokemonId: pokemonId)
     }
-    func requestNewGroup(pokemons: [PokemonSpecies], name: String, regionId: Int) {
-        let group = Group(id: UUID().uuidString, regionId: regionId, name: name, codeShared: nil, pokemons: pokemons)
+    func requestNewGroup(group: inout Group) {
+        if group.id == nil {
+            group.id = UUID().uuidString
+        }
         remoteDatamanager?.createGroup(group: group)
     }
 }

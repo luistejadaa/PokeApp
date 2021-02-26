@@ -28,7 +28,7 @@ final class PokedexService: PokedexServiceProtocol {
                                 case .success(let pokedex):
                                     pokedexesResult.append(pokedex)
                                     if index == pokedexes.count - 1 {
-                                        completion(.success(pokedexesResult))
+                                        completion(.success([pokedexesResult[0]]))
                                     }
                                 case .failure(let error): completion(.failure(error))
                                 }

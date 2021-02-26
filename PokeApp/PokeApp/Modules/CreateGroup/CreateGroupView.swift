@@ -33,22 +33,27 @@ class CreateGroupView: BaseViewController {
     }
     
     @objc func pushDoneButton() {
-        let alert = UIAlertController(title: "Group", message: "Type a name for the group", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "Group name"
-        }
-        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
-            if let name = alert.textFields?.first?.text, !name.isEmpty {
-                self.presenter?.saveGroup(name: name)
-            } else {
-                self.presentAlert(with: nil, message: "Please fill the group name", actions: [UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-                    self.present(alert, animated: true, completion: nil)
-                })], completion: nil)
-            }
-        }))
         
-        alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        if let presenter = presenter, !presenter.isEditMode() {
+            let alert = UIAlertController(title: "Group", message: "Type a name for the group", preferredStyle: .alert)
+            alert.addTextField { (textField) in
+                textField.placeholder = "Group name"
+            }
+            alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
+                if let name = alert.textFields?.first?.text, !name.isEmpty {
+                    self.presenter?.saveGroup(name: name)
+                } else {
+                    self.presentAlert(with: nil, message: "Please fill the group name", actions: [UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                        self.present(alert, animated: true, completion: nil)
+                    })], completion: nil)
+                }
+            }))
+            
+            alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            self.presenter?.updateGroup()
+        }
     }
     
     func setupConstraints() {
@@ -62,8 +67,9 @@ class CreateGroupView: BaseViewController {
 }
 
 extension CreateGroupView: CreateGroupViewProtocol {
+    
     func groupCreated(message: String) {
-        presentAlert(with: nil, message: message, actions: [UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+        presentAlert(with: nil, message: message, actions: [UIAlertAction(title: "Ok", style: .default, handler: { (_) in
             self.navigationController?.popViewController(animated: true)
         })], completion: nil)
     }
@@ -84,6 +90,10 @@ extension CreateGroupView: CreateGroupViewProtocol {
 }
 
 extension CreateGroupView: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        presenter?.movePokemon(from: sourceIndexPath, to: destinationIndexPath)
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return presenter?.getPokedexCount() ?? 0
@@ -111,16 +121,11 @@ extension CreateGroupView: UITableViewDataSource {
         }
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return presenter?.getPokedexName(at: section)
-    }
 }
 
 extension CreateGroupView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
         guard let presenter = self.presenter else {return []}
         var action: UITableViewRowAction!
         if !presenter.checkIfPokemonIsAdded(at: indexPath) {

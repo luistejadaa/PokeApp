@@ -19,7 +19,7 @@ protocol CreateGroupViewProtocol: class {
 
 protocol CreateGroupWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
-    static func createModule(with region: Region) -> UIViewController
+    static func createModule(group: Group?, with region: Region) -> UIViewController
     func navigateToPokemonDetail(from: CreateGroupViewProtocol, pokemonId: Int)
 }
 
@@ -41,6 +41,9 @@ protocol CreateGroupPresenterProtocol: class {
     func getPokemonSpecies(at indexPath: IndexPath) -> PokemonSpecies?
     func saveGroup(name: String)
     func pushPokemon(at indexPath: IndexPath)
+    func movePokemon(from: IndexPath, to: IndexPath)
+    func isEditMode() -> Bool
+    func updateGroup()
 }
 
 protocol CreateGroupInteractorOutputProtocol: class {
@@ -57,7 +60,7 @@ protocol CreateGroupInteractorInputProtocol: class {
     var remoteDatamanager: CreateGroupRemoteDataManagerInputProtocol? { get set }
     func requestPokedexes(regionName: String)
     func requestThumbnail(pokemonId: Int)
-    func requestNewGroup(pokemons: [PokemonSpecies], name: String, regionId: Int)
+    func requestNewGroup(group: inout Group)
     
 }
 
