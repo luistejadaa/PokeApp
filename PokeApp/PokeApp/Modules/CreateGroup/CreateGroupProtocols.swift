@@ -57,28 +57,8 @@ protocol CreateGroupInteractorOutputProtocol: class {
 protocol CreateGroupInteractorInputProtocol: class {
     // PRESENTER -> INTERACTOR
     var presenter: CreateGroupInteractorOutputProtocol? { get set }
-    var remoteDatamanager: CreateGroupRemoteDataManagerInputProtocol? { get set }
     func requestPokedexes(regionName: String)
     func requestThumbnail(pokemonId: Int)
     func requestNewGroup(group: inout Group)
     
-}
-
-protocol CreateGroupDataManagerInputProtocol: class {
-    // INTERACTOR -> DATAMANAGER
-}
-
-protocol CreateGroupRemoteDataManagerInputProtocol: class {
-    // INTERACTOR -> REMOTEDATAMANAGER
-    var remoteRequestHandler: CreateGroupRemoteDataManagerOutputProtocol? { get set }
-    func getPokemons(for regionName: String)
-    func getThumbnail(pokemonId: Int)
-    func createGroup(group: Group)
-}
-
-protocol CreateGroupRemoteDataManagerOutputProtocol: class {
-    // REMOTEDATAMANAGER -> INTERACTOR
-    func didReceived(_ result: Result<[Pokedex], Error>)
-    func didReceived(_ image: UIImage, pokemonId: Int)
-    func createGroupHandler(error: Error?)
 }

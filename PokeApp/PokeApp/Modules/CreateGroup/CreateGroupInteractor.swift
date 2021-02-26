@@ -22,32 +22,37 @@ extension CreateGroupDelegate {
 class CreateGroupInteractor: CreateGroupInteractorInputProtocol {
     
     // MARK: Properties
+    let pokedexService = PokedexService.shared
+    let imageService = ImageService.shared
+    let database = RealtimeManager.shared
+    let groupService = GroupService.shared
     weak var presenter: CreateGroupInteractorOutputProtocol?
     weak var delegate: CreateGroupDelegate?
     var workingGroup: Group!
-    var remoteDatamanager: CreateGroupRemoteDataManagerInputProtocol?
-    
-    init(remoteDatamanager: CreateGroupRemoteDataManagerInputProtocol) {
-        self.remoteDatamanager = remoteDatamanager
-    }
     
     func requestPokedexes(regionName: String) {
-        remoteDatamanager?.getPokemons(for: regionName)
+        pokedexService.getPokedex(for: regionName) { (resul) in
+            self.didReceived(resul)
+        }
     }
     
     func requestThumbnail(pokemonId: Int) {
-        remoteDatamanager?.getThumbnail(pokemonId: pokemonId)
+        imageService.getThumbnail(pokemonId: pokemonId) { (image) in
+            self.didReceived(image, pokemonId: pokemonId)
+        }
     }
     func requestNewGroup(group: inout Group) {
         if group.id == nil {
             group.id = UUID().uuidString
         }
         workingGroup = group
-        remoteDatamanager?.createGroup(group: group)
+        groupService.saveGroup(group: group) { (error) in
+            self.createGroupHandler(error: error)
+        }
     }
 }
 
-extension CreateGroupInteractor: CreateGroupRemoteDataManagerOutputProtocol {
+extension CreateGroupInteractor {
     
     func createGroupHandler(error: Error?) {
         presenter?.didGroupCreated(error: error)

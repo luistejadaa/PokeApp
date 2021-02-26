@@ -27,7 +27,6 @@
 		897EC12C25E7165C00D0A38C /* RegionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12525E7165C00D0A38C /* RegionProtocols.swift */; };
 		897EC12D25E7165C00D0A38C /* RegionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12625E7165C00D0A38C /* RegionInteractor.swift */; };
 		897EC12E25E7165C00D0A38C /* RegionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12725E7165C00D0A38C /* RegionView.swift */; };
-		897EC12F25E7165C00D0A38C /* RegionRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12825E7165C00D0A38C /* RegionRemoteDataManager.swift */; };
 		897EC13025E7165C00D0A38C /* RegionWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC12925E7165C00D0A38C /* RegionWireFrame.swift */; };
 		897EC14025E7293E00D0A38C /* RegionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC13F25E7293E00D0A38C /* RegionDetail.swift */; };
 		897EC14525E72A4D00D0A38C /* Pokedex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC14425E72A4D00D0A38C /* Pokedex.swift */; };
@@ -41,7 +40,6 @@
 		897EC19625E74FFA00D0A38C /* CreateGroupProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC18F25E74FFA00D0A38C /* CreateGroupProtocols.swift */; };
 		897EC19725E74FFA00D0A38C /* CreateGroupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC19025E74FFA00D0A38C /* CreateGroupInteractor.swift */; };
 		897EC19825E74FFA00D0A38C /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC19125E74FFA00D0A38C /* CreateGroupView.swift */; };
-		897EC19925E74FFA00D0A38C /* CreateGroupRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC19225E74FFA00D0A38C /* CreateGroupRemoteDataManager.swift */; };
 		897EC19A25E74FFA00D0A38C /* CreateGroupWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC19325E74FFA00D0A38C /* CreateGroupWireFrame.swift */; };
 		897EC19F25E757C700D0A38C /* PokedexService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC19E25E757C700D0A38C /* PokedexService.swift */; };
 		897EC1AB25E7712A00D0A38C /* PokemonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897EC1A425E7712A00D0A38C /* PokemonPresenter.swift */; };
@@ -129,7 +127,6 @@
 		897EC12525E7165C00D0A38C /* RegionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionProtocols.swift; sourceTree = "<group>"; };
 		897EC12625E7165C00D0A38C /* RegionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionInteractor.swift; sourceTree = "<group>"; };
 		897EC12725E7165C00D0A38C /* RegionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionView.swift; sourceTree = "<group>"; };
-		897EC12825E7165C00D0A38C /* RegionRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionRemoteDataManager.swift; sourceTree = "<group>"; };
 		897EC12925E7165C00D0A38C /* RegionWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionWireFrame.swift; sourceTree = "<group>"; };
 		897EC13F25E7293E00D0A38C /* RegionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionDetail.swift; sourceTree = "<group>"; };
 		897EC14425E72A4D00D0A38C /* Pokedex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokedex.swift; sourceTree = "<group>"; };
@@ -143,7 +140,6 @@
 		897EC18F25E74FFA00D0A38C /* CreateGroupProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupProtocols.swift; sourceTree = "<group>"; };
 		897EC19025E74FFA00D0A38C /* CreateGroupInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupInteractor.swift; sourceTree = "<group>"; };
 		897EC19125E74FFA00D0A38C /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
-		897EC19225E74FFA00D0A38C /* CreateGroupRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupRemoteDataManager.swift; sourceTree = "<group>"; };
 		897EC19325E74FFA00D0A38C /* CreateGroupWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupWireFrame.swift; sourceTree = "<group>"; };
 		897EC19E25E757C700D0A38C /* PokedexService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexService.swift; sourceTree = "<group>"; };
 		897EC1A425E7712A00D0A38C /* PokemonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonPresenter.swift; sourceTree = "<group>"; };
@@ -301,7 +297,6 @@
 				897EC12525E7165C00D0A38C /* RegionProtocols.swift */,
 				897EC12625E7165C00D0A38C /* RegionInteractor.swift */,
 				897EC12725E7165C00D0A38C /* RegionView.swift */,
-				897EC12825E7165C00D0A38C /* RegionRemoteDataManager.swift */,
 				897EC12925E7165C00D0A38C /* RegionWireFrame.swift */,
 			);
 			path = Region;
@@ -322,7 +317,6 @@
 				897EC18F25E74FFA00D0A38C /* CreateGroupProtocols.swift */,
 				897EC19025E74FFA00D0A38C /* CreateGroupInteractor.swift */,
 				897EC19125E74FFA00D0A38C /* CreateGroupView.swift */,
-				897EC19225E74FFA00D0A38C /* CreateGroupRemoteDataManager.swift */,
 				897EC19325E74FFA00D0A38C /* CreateGroupWireFrame.swift */,
 			);
 			path = CreateGroup;
@@ -820,7 +814,6 @@
 				897EC12C25E7165C00D0A38C /* RegionProtocols.swift in Sources */,
 				896B18C925E802CB003A0A33 /* GroupDetailProtocols.swift in Sources */,
 				89A35CCD25E5DF2F008010C3 /* Builder.swift in Sources */,
-				897EC12F25E7165C00D0A38C /* RegionRemoteDataManager.swift in Sources */,
 				897EC1AD25E7712A00D0A38C /* PokemonProtocols.swift in Sources */,
 				897EC12D25E7165C00D0A38C /* RegionInteractor.swift in Sources */,
 				897EC1AE25E7712A00D0A38C /* PokemonInteractor.swift in Sources */,
@@ -848,7 +841,6 @@
 				896B18DB25E80708003A0A33 /* PokemonServiceProtocol.swift in Sources */,
 				897EC1AF25E7712A00D0A38C /* PokemonView.swift in Sources */,
 				89A35D2D25E60699008010C3 /* APIManager.swift in Sources */,
-				897EC19925E74FFA00D0A38C /* CreateGroupRemoteDataManager.swift in Sources */,
 				897EC1AB25E7712A00D0A38C /* PokemonPresenter.swift in Sources */,
 				897EC12A25E7165C00D0A38C /* RegionPresenter.swift in Sources */,
 				89A35D4525E60B68008010C3 /* HomeInteractor.swift in Sources */,

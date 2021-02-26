@@ -51,8 +51,3 @@ protocol RegionInteractorInputProtocol: class {
     func requestGroups(forRegionId: Int)
     func requestRemoveGroup(group: Group)
 }
-
-protocol RegionRemoteDataManagerInputProtocol: class {
-    // INTERACTOR -> REMOTEDATAMANAGER
-    func getGroups(forRegionId: Int)
-}

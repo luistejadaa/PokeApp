@@ -19,13 +19,12 @@ class CreateGroupWireFrame: CreateGroupWireFrameProtocol {
     
     class func createModule(group: Group?, with region: Region, delegate: CreateGroupDelegate?) -> UIViewController {
         let view = CreateGroupView()
-        let interactor = CreateGroupInteractor(remoteDatamanager: CreateGroupRemoteDataManager())
+        let interactor = CreateGroupInteractor()
         let wireFrame = CreateGroupWireFrame()
         let presenter = CreateGroupPresenter(with: region, group: group, view: view, interactor: interactor, wireFrame: wireFrame)
         view.presenter = presenter
         interactor.presenter = presenter
         interactor.delegate = delegate
-        interactor.remoteDatamanager?.remoteRequestHandler = interactor
         return view
     }
     
