@@ -42,6 +42,7 @@ protocol GroupDetailPresenterProtocol: class {
 protocol GroupDetailInteractorOutputProtocol: class {
 // INTERACTOR -> PRESENTER
     func didReceived(thumbnail: UIImage, for pokemonId: Int)
+    func groupDidChanged(group: Group)
 }
 
 protocol GroupDetailInteractorInputProtocol: class {

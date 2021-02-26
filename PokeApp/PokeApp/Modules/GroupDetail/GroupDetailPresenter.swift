@@ -52,6 +52,12 @@ extension GroupDetailPresenter: GroupDetailPresenterProtocol {
 }
 
 extension GroupDetailPresenter: GroupDetailInteractorOutputProtocol {
+    
+    func groupDidChanged(group: Group) {
+        self.group = group
+        view?.reloadData()
+    }
+    
     func didReceived(thumbnail: UIImage, for pokemonId: Int) {
         if let index = group.pokemons.firstIndex(where: {$0.species.pokemonId == pokemonId}) {
             group.pokemons[index].image = thumbnail

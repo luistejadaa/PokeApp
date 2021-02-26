@@ -35,18 +35,21 @@ protocol RegionPresenterProtocol: class {
     func getGroupsCount() -> Int
     func getGroupName(at index: Int) -> String
     func pushGroup(at index: Int)
+    func removeGroup(at index: Int)
 }
 
 protocol RegionInteractorOutputProtocol: class {
 // INTERACTOR -> PRESENTER
     func didLoad(groups: [Group])
     func didLoad(error: Error)
+    func didRemoved(group: Group)
 }
 
 protocol RegionInteractorInputProtocol: class {
     // PRESENTER -> INTERACTOR
     var presenter: RegionInteractorOutputProtocol? { get set }
     func requestGroups(forRegionId: Int)
+    func requestRemoveGroup(group: Group)
 }
 
 protocol RegionRemoteDataManagerInputProtocol: class {

@@ -19,7 +19,7 @@ protocol CreateGroupViewProtocol: class {
 
 protocol CreateGroupWireFrameProtocol: class {
     // PRESENTER -> WIREFRAME
-    static func createModule(group: Group?, with region: Region) -> UIViewController
+    static func createModule(group: Group?, with region: Region, delegate: CreateGroupDelegate?) -> UIViewController
     func navigateToPokemonDetail(from: CreateGroupViewProtocol, pokemonId: Int)
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 
 class GroupDetailInteractor: GroupDetailInteractorInputProtocol {
-    
+
     // MARK: Properties
     weak var presenter: GroupDetailInteractorOutputProtocol?
     var imageService = ImageService.shared
@@ -18,5 +18,11 @@ class GroupDetailInteractor: GroupDetailInteractorInputProtocol {
         imageService.getThumbnail(pokemonId: pokemonId) { (image) in
             self.presenter?.didReceived(thumbnail: image, for: pokemonId)
         }
+    }
+}
+
+extension GroupDetailInteractor: CreateGroupDelegate {
+    func groupDidSaved(group: Group) {
+        presenter?.groupDidChanged(group: group)
     }
 }

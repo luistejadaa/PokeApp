@@ -12,8 +12,13 @@ import UIKit
 class GroupDetailWireFrame: GroupDetailWireFrameProtocol {
 
     func navigateToEditGroup(from: GroupDetailViewProtocol, region: Region, group: Group) {
+        var delegate: CreateGroupDelegate?
+        if let createGroupDelegate = from.presenter?.interactor as? CreateGroupDelegate {
+            delegate = createGroupDelegate
+        }
         if let viewController = from as? UIViewController {
-            viewController.navigationController?.pushViewController(CreateGroupWireFrame.createModule(group: group, with: region), animated: true)
+            let module = CreateGroupWireFrame.createModule(group: group, with: region, delegate: delegate)
+            viewController.navigationController?.pushViewController(module, animated: true)
         }
     }
     

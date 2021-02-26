@@ -35,4 +35,11 @@ class GroupService: GroupServiceProtocol {
             }
         }
     }
+    func removeGroup(group: Group, completion: @escaping (Error?) -> Void) {
+        if let userId = UserApp.shared.userId {
+            database.removeChild(path: "users/\(userId)/groups/\(group.regionId!)/", id: group.id) { (error) in
+                completion(error)
+            }
+        }
+    }
 }

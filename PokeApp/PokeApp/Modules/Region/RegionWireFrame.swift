@@ -29,7 +29,7 @@ class RegionWireFrame: RegionWireFrameProtocol {
     
     func navigateToCreateGroup(from view: RegionViewProtocol, for region: Region) {
         if let viewController = view as? UIViewController {
-            viewController.navigationController?.pushViewController(CreateGroupWireFrame.createModule(group: nil, with: region), animated: true)
+            viewController.navigationController?.pushViewController(CreateGroupWireFrame.createModule(group: nil, with: region, delegate: nil), animated: true)
         }
     }
 }

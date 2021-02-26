@@ -28,6 +28,11 @@ class RegionPresenter {
 }
 
 extension RegionPresenter: RegionPresenterProtocol {
+    
+    func removeGroup(at index: Int) {
+        interactor?.requestRemoveGroup(group: groups[index])
+    }
+    
     func pushGroup(at index: Int) {
         wireFrame?.navigateToGroupDetail(from: view!, region: region!, group: groups[index])
     }
@@ -55,6 +60,12 @@ extension RegionPresenter: RegionPresenterProtocol {
 }
 
 extension RegionPresenter: RegionInteractorOutputProtocol {
+    
+    func didRemoved(group: Group) {
+        groups.removeAll {$0.id == group.id}
+        view?.reloadData()
+    }
+    
     func didLoad(error: Error) {
         view?.displayError(error: error)
     }

@@ -13,6 +13,15 @@ final class RegionInteractor: RegionInteractorInputProtocol {
     // MARK: Properties
     weak var presenter: RegionInteractorOutputProtocol?
     let groupService = GroupService.shared
+    func requestRemoveGroup(group: Group) {
+        groupService.removeGroup(group: group) { (error) in
+            if let error = error {
+                self.presenter?.didLoad(error: error)
+            } else {
+                self.presenter?.didRemoved(group: group)
+            }
+        }
+    }
     func requestGroups(forRegionId: Int) {
         groupService.getGroups(forRegionId: forRegionId) { (result) in
             switch result {

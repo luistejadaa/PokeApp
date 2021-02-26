@@ -87,4 +87,13 @@ extension RegionView: UITableViewDelegate {
         presenter?.pushGroup(at: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        guard let presenter = self.presenter else {return []}
+        let action = UITableViewRowAction(style: .normal, title: "Remove") { (_, indexPath) in
+            presenter.removeGroup(at: indexPath.row)
+        }
+        action.backgroundColor = .systemRed
+        return [action]
+    }
 }
